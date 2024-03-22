@@ -1,3 +1,4 @@
+using Core.Components.GoBased;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,13 @@ namespace Core.Components.LevelManagement
     {
         [SerializeField] private float _width;
         [SerializeField] private float _height;
-        [SerializeField] private GameObject _wall;
-        [SerializeField] private GameObject _player;
+        [Range(0f, 1f)]
+        [SerializeField] private float _probability = 0.5f;
+        [Range(0f, 1f)]
+        [SerializeField] private float _density = 0.5f;
+        [SerializeField] private SpawnComponent _wallDefault;
+        [SerializeField] private SpawnComponent _wallOre;
+        [SerializeField] private SpawnComponent _player;
         private bool playerSpawned = false;
 
         private void Start()
@@ -23,18 +29,26 @@ namespace Core.Components.LevelManagement
             {
                 for (int y=0; y<=_height; y++)
                 {
-                    if (Random.value >0.5f)
+                    if (Random.value > _density)
                     {
                         //Создание блоков
-                        Vector2 pos = CalculatePosition(x, y);
-                        Instantiate(_wall, pos, Quaternion.identity, transform);
+                        Vector2 position = CalculatePosition(x, y);
+                        if (Random.value > _probability)
+                        {
+                            _wallDefault.Spawn(position);
+                        }
+                        else
+                        {
+                            _wallOre.Spawn(position);
+                        }
+                      
                     }
                     else if(!playerSpawned)
                     {
                         //Создание игрока
-                        Vector2 pos = CalculatePosition(x, y);
-                        Instantiate(_player, pos, Quaternion.identity);
-                        playerSpawned = true;
+                        Vector2 position = CalculatePosition(x, y);
+                        _player.Spawn(position);
+                         playerSpawned = true;
                     }
                 }
             }
