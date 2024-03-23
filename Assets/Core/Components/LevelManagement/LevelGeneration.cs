@@ -15,7 +15,8 @@ namespace Core.Components.LevelManagement
         [SerializeField] private SpawnComponent _wallDefault;
         [SerializeField] private SpawnComponent _wallOre;
         [SerializeField] private SpawnComponent _player;
-        private bool playerSpawned = false;
+        [SerializeField] private SpawnEnemy _spawnEnemy;
+        private bool playerSpawned = false;        
 
         private void Start()
         {
@@ -46,7 +47,7 @@ namespace Core.Components.LevelManagement
                     else if(!playerSpawned)
                     {
                         //Создание игрока
-                        Vector2 position = CalculatePosition(x, y);
+                        Vector2 position = CalculatePosition(_height / 2, _width / 2);
                         _player.Spawn(position);
                          playerSpawned = true;
                     }
@@ -54,7 +55,7 @@ namespace Core.Components.LevelManagement
             }
         }
 
-        private Vector2 CalculatePosition(int x, int y)
+        private Vector2 CalculatePosition(float x, float y)
         {
             return new Vector2(x - _width / 2f, y - _height / 2f);
         }

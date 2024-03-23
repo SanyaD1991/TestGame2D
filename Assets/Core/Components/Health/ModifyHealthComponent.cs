@@ -23,10 +23,8 @@ namespace Core.Components.Health
                 if (isDomage)
                 {
 
-                    int random = Random.Range(0, 100);
-                    print(random + "<" + CriticalDamage);
-                    int damage = random < CriticalDamage ? 100 : LifeValue;
-                    print(gameObject.name);
+                    int random = Random.Range(0, 100);               
+                    int damage = random < CriticalDamage ? 100 : LifeValue;                  
                     _healthComponent.ApplyDamage(damage);
 
                 }

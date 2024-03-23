@@ -20,6 +20,10 @@ public class AgenMovement : MonoBehaviour
         SetAgentPosition();
     }
     
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
 
     private void SetAgentPosition()
     {
