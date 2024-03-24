@@ -14,6 +14,11 @@ namespace Core.Components.ColliderBased
             StartCoroutine(OffOn(time));
         }
 
+        public void Off()
+        {
+            collider.enabled = false;
+        }
+
         private IEnumerator OffOn(float time)
         {
             collider.enabled = false;

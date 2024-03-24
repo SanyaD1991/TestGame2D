@@ -35,14 +35,16 @@ public class SpawnBullet : MonoBehaviour
     }
    
     private void LookAt()
-    {       
+    {
+        _switch.Off();
         for (int i=0; i< _listEnemy.Count; i++)
         {
            Vector3 look = transform.position-_listEnemy[i];
+          
            float angle = Mathf.Atan2(look.x, look.y) * Mathf.Rad2Deg-90;
             transform.eulerAngles = new Vector3(0,0,angle);          
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, look*-1, 2f, layerWall);
-            Debug.DrawRay(transform.position, look * -2f, Color.red);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, look*-1, Vector3.Distance(transform.position, _listEnemy[i]), layerWall);
+            Debug.DrawRay(transform.position, look * -1f, Color.red);
           
             if (hit.transform==null && !_block)
             {
@@ -52,7 +54,7 @@ public class SpawnBullet : MonoBehaviour
             }
         }       
         _listEnemy.Clear();
-        _switch.Reset(0.1f);
+        _switch.Reset(0.5f);
     }
 
 
