@@ -13,8 +13,7 @@ namespace Core.Components.GoBased
         private Vector3 endPoint;
         
         private void Awake()
-        {
-           
+        {           
             RandomCorner();
         }
 
@@ -34,8 +33,8 @@ namespace Core.Components.GoBased
 
         private void RandomCorner()
         {
-            transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(0f, 360f));
-            endPoint = _endPosition.position;
+           transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(0f, 360f));
+           endPoint = _endPosition.position;
            enabled = true;
         }
 

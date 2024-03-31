@@ -14,8 +14,7 @@ namespace Core.Components.LevelManagement
         [SerializeField] private float _density = 0.5f;
         [SerializeField] private SpawnComponent _wallDefault;
         [SerializeField] private SpawnComponent _wallOre;
-        [SerializeField] private SpawnComponent _player;
-        [SerializeField] private SpawnEnemy _spawnEnemy;
+        [SerializeField] private SpawnComponent _player;       
         private bool playerSpawned = false;        
 
         private void Start()

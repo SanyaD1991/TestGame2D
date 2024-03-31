@@ -4,10 +4,11 @@ namespace Core.Creatures
 {
     public class Creature : MonoBehaviour
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private Joystick _joystick;
+
+        [SerializeField] private float _speed;  
         [Range(0.0f, 0.3f)]
-        [SerializeField] private float _rotationSmoothTime = 0.12f;     
+        [SerializeField] private float _rotationSmoothTime = 0.12f;
+        [SerializeField] protected Joystick _joystick;
         protected Vector2 _direction;
         protected Rigidbody2D _rigidbody;
 
@@ -27,7 +28,7 @@ namespace Core.Creatures
 
         private void FixedUpdate()
         {
-            SetVectorDirection(_joystick.Direction);
+            if (_joystick != null) SetVectorDirection(_joystick.Direction);
             Move();
         }
 

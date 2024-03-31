@@ -19,7 +19,7 @@ namespace Core.Model
         private void Start()
         {
             SceneManager.LoadScene("HUD", LoadSceneMode.Additive);
-           // SceneManager.LoadScene("Controls", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Controls", LoadSceneMode.Additive);
             OnChanged += Checked;
         }
         public void SetPlayer(Player player)
